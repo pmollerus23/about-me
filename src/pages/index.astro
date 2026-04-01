@@ -1,17 +1,153 @@
 ---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { experience } from "../data/experience";
+import { projects } from "../data/projects";
+import { skills } from "../data/skills";
 
+const education = {
+  school: "Dickinson College",
+  degree: "B.S. Computer Science",
+  year: " May 2023",
+};
+
+const contact = {
+  email: "pmollerus23@gmail.com",
+  github: "https://github.com/pmollerus23",
+  linkedin: "https://www.linkedin.com/in/pmollerus",
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="en" class="bg-stone-50 text-zinc-900">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Philip Mollerus — Full-Stack Software Engineer." />
+    <title>Philip Mollerus — Software Engineer</title>
+  </head>
+  <body class="antialiased">
+    <Header />
+
+    <main class="max-w-3xl mx-auto px-6">
+
+      <!-- Hero -->
+      <section class="pt-20 pb-16 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-10">
+        <!-- Text -->
+        <div class="flex-1">
+          <h1 class="text-3xl font-semibold text-zinc-900 mb-2 tracking-tight">
+            Philip Mollerus
+          </h1>
+          <p class="text-zinc-500 mb-6">Full-Stack Software Engineer</p>
+          <p class="text-zinc-600 leading-relaxed max-w-md mb-8">
+            Curious full‑stack engineer specialized in building maintainable and scalable UIs, services and data systems.
+          </p>
+          <div class="flex items-center gap-5 text-sm">
+            <a href={contact.github} target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 transition-colors underline underline-offset-2">
+              GitHub
+            </a>
+            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 transition-colors underline underline-offset-2">
+              LinkedIn
+            </a>
+            <a href={`mailto:${contact.email}`} class="text-zinc-500 hover:text-zinc-900 transition-colors underline underline-offset-2">
+              {contact.email}
+            </a>
+          </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="shrink-0">
+          <img
+            src="/profile.jpg"
+            alt="Philip Mollerus"
+            width="160"
+            height="160"
+            class="rounded-full object-cover w-32 h-32 sm:w-40 sm:h-40 ring-1 ring-zinc-200"
+          />
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="py-16 border-t border-zinc-200">
+        <SectionHeader title="Experience" />
+        <div class="space-y-10">
+          {experience.map((item) => (
+            <ExperienceItem {...item} />
+          ))}
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="py-16 border-t border-zinc-200">
+        <SectionHeader title="Projects" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="py-16 border-t border-zinc-200">
+        <SectionHeader title="Skills & Interests" />
+        <div class="space-y-5">
+          {Object.entries(skills).map(([category, items]) => (
+            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
+              <span class="text-sm text-zinc-400 w-36 shrink-0">{category}</span>
+              <div class="flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <span class="text-sm text-zinc-600">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Education & Certifications -->
+      <section id="education" class="py-16 border-t border-zinc-200">
+        <SectionHeader title="Education & Certifications" />
+        <div class="space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <div>
+              <span class="font-semibold text-zinc-900">{education.degree}</span>
+              <span class="text-zinc-400 mx-2">·</span>
+              <span class="text-zinc-600">{education.school}</span>
+            </div>
+            <span class="text-sm text-zinc-400">{education.year}</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <div>
+              <a href="https://learn.microsoft.com/en-us/users/philmollerus-5935/credentials/fca3e28fa05b058" target="_blank" rel="noopener noreferrer" class="font-semibold text-zinc-900 hover:text-zinc-500 transition-colors underline underline-offset-2">Microsoft Certified: Azure AI Engineer Associate</a>
+              <span class="text-zinc-400 mx-2">·</span>
+              <span class="text-zinc-600">Microsoft</span>
+            </div>
+            <span class="text-sm text-zinc-400 shrink-0">Oct 2025</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="py-16 border-t border-zinc-200">
+        <SectionHeader title="Contact" />
+        <p class="text-zinc-600 text-sm mb-4">
+          Open to opportunities, collaborations, and interesting conversations.
+        </p>
+        <a
+          href={`mailto:${contact.email}`}
+          class="text-sm text-zinc-900 font-medium underline underline-offset-2 hover:text-zinc-500 transition-colors"
+        >
+          {contact.email}
+        </a>
+      </section>
+
+    </main>
+
+    <Footer />
+  </body>
 </html>

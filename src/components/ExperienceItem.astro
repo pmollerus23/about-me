@@ -1,0 +1,32 @@
+---
+interface Props {
+  company: string;
+  role: string;
+  start: string;
+  end: string;
+  location: string;
+  bullets: string[];
+}
+const { company, role, start, end, location, bullets } = Astro.props;
+---
+
+<div class="group">
+  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+    <div>
+      <span class="font-semibold text-zinc-900">{role}</span>
+      <span class="text-zinc-400 mx-2">·</span>
+      <span class="text-zinc-600">{company}</span>
+    </div>
+    <div class="text-sm text-zinc-400 shrink-0">
+      {start} – {end}
+    </div>
+  </div>
+  <p class="text-xs text-zinc-400 mb-3">{location}</p>
+  <ul class="space-y-1.5">
+    {bullets.map((bullet) => (
+      <li class="text-sm text-zinc-600 leading-relaxed pl-3 border-l border-zinc-200">
+        {bullet}
+      </li>
+    ))}
+  </ul>
+</div>
