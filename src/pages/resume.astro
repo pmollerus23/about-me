@@ -1,0 +1,267 @@
+---
+import { experience } from "../data/experience";
+import { projects } from "../data/projects";
+import { skills } from "../data/skills";
+
+const education = {
+  school: "Dickinson College",
+  degree: "B.S. Computer Science",
+  year: "May 2023",
+};
+
+const contact = {
+  email: "pmollerus23@gmail.com",
+  github: "github.com/pmollerus23",
+  githubUrl: "https://github.com/pmollerus23",
+  linkedin: "linkedin.com/in/pmollerus",
+  linkedinUrl: "https://www.linkedin.com/in/pmollerus",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Philip Mollerus — Resume</title>
+    <style>
+      /* Base */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: "Georgia", serif;
+        font-size: 10.5pt;
+        line-height: 1.5;
+        color: #18181b;
+        background: #fff;
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 48px 48px 64px;
+      }
+
+      /* Print button */
+      .print-bar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 32px;
+      }
+      .print-btn {
+        font-family: inherit;
+        font-size: 9pt;
+        padding: 6px 16px;
+        border: 1px solid #d4d4d8;
+        border-radius: 4px;
+        background: #fff;
+        color: #52525b;
+        cursor: pointer;
+      }
+      .print-btn:hover { background: #f4f4f5; }
+
+      /* Header */
+      .resume-name {
+        font-size: 22pt;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        margin-bottom: 2px;
+      }
+      .resume-title {
+        font-size: 10.5pt;
+        color: #52525b;
+        font-style: italic;
+        margin-bottom: 8px;
+      }
+      .resume-contact {
+        font-size: 9pt;
+        color: #52525b;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 20px;
+      }
+      .resume-contact a { color: #52525b; text-decoration: none; }
+      .resume-contact a:hover { text-decoration: underline; }
+
+      /* Divider */
+      hr {
+        border: none;
+        border-top: 1px solid #d4d4d8;
+        margin: 14px 0;
+      }
+
+      /* Section */
+      .section { margin-bottom: 18px; }
+      .section-title {
+        font-size: 7.5pt;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #a1a1aa;
+        margin-bottom: 10px;
+      }
+
+      /* Experience */
+      .exp-item { margin-bottom: 14px; break-inside: avoid; }
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .exp-role { font-weight: 700; font-size: 10.5pt; }
+      .exp-company { color: #52525b; }
+      .exp-meta { font-size: 9pt; color: #a1a1aa; }
+      .exp-location { font-size: 8.5pt; color: #a1a1aa; margin-bottom: 5px; }
+      .exp-bullets { padding-left: 0; list-style: none; }
+      .exp-bullets li {
+        font-size: 9.5pt;
+        color: #3f3f46;
+        padding-left: 12px;
+        position: relative;
+        margin-bottom: 3px;
+        line-height: 1.45;
+      }
+      .exp-bullets li::before {
+        content: "–";
+        position: absolute;
+        left: 0;
+        color: #a1a1aa;
+      }
+
+      /* Skills */
+      .skills-grid { display: flex; flex-direction: column; gap: 5px; }
+      .skill-row { display: flex; gap: 8px; font-size: 9.5pt; }
+      .skill-category { color: #a1a1aa; width: 120px; shrink: 0; flex-shrink: 0; }
+      .skill-items { color: #3f3f46; }
+
+      /* Projects */
+      .project-item { margin-bottom: 10px; break-inside: avoid; }
+      .project-header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+      .project-name { font-weight: 700; font-size: 10pt; }
+      .project-tech { font-size: 8.5pt; color: #a1a1aa; }
+      .project-desc { font-size: 9.5pt; color: #3f3f46; line-height: 1.45; margin-top: 2px; }
+
+      /* Education */
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 9.5pt;
+        margin-bottom: 6px;
+        break-inside: avoid;
+      }
+      .edu-name { font-weight: 700; }
+      .edu-sub { color: #52525b; }
+      .edu-date { color: #a1a1aa; font-size: 9pt; white-space: nowrap; }
+      .edu-link { color: #18181b; }
+
+      /* Print */
+      @media print {
+        body { padding: 0; max-width: 100%; font-size: 9.5pt; }
+        .print-bar { display: none; }
+        a { color: inherit; text-decoration: none; }
+        @page { margin: 18mm 16mm; }
+      }
+
+      @media screen and (max-width: 600px) {
+        body { padding: 24px 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Print button (screen only) -->
+    <div class="print-bar">
+      <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="resume-name">Philip Mollerus</div>
+      <div class="resume-title">Full-Stack Software Engineer</div>
+      <div class="resume-contact">
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        <a href={contact.githubUrl} target="_blank" rel="noopener noreferrer">{contact.github}</a>
+        <a href={contact.linkedinUrl} target="_blank" rel="noopener noreferrer">{contact.linkedin}</a>
+      </div>
+    </header>
+
+    <hr />
+
+    <!-- Experience -->
+    <section class="section">
+      <div class="section-title">Experience</div>
+      {experience.map((item) => (
+        <div class="exp-item">
+          <div class="exp-header">
+            <span>
+              <span class="exp-role">{item.role}</span>
+              <span class="exp-company"> · {item.company}</span>
+            </span>
+            <span class="exp-meta">{item.start} – {item.end}</span>
+          </div>
+          <div class="exp-location">{item.location}</div>
+          <ul class="exp-bullets">
+            {item.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <hr />
+
+    <!-- Skills -->
+    <section class="section">
+      <div class="section-title">Skills</div>
+      <div class="skills-grid">
+        {Object.entries(skills).map(([cat, items]) => (
+          <div class="skill-row">
+            <span class="skill-category">{cat}</span>
+            <span class="skill-items">{items.join(" · ")}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Projects -->
+    <section class="section">
+      <div class="section-title">Projects</div>
+      {projects.map((p) => (
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">
+              {p.repo
+                ? <a href={p.repo} target="_blank" rel="noopener noreferrer">{p.name}</a>
+                : p.name}
+            </span>
+            <span class="project-tech">{p.tech.join(" · ")}</span>
+          </div>
+          <div class="project-desc">{p.description}</div>
+        </div>
+      ))}
+    </section>
+
+    <hr />
+
+    <!-- Education & Certifications -->
+    <section class="section">
+      <div class="section-title">Education & Certifications</div>
+      <div class="edu-row">
+        <span>
+          <span class="edu-name">{education.degree}</span>
+          <span class="edu-sub"> · {education.school}</span>
+        </span>
+        <span class="edu-date">{education.year}</span>
+      </div>
+      <div class="edu-row">
+        <span>
+          <a class="edu-link" href="https://learn.microsoft.com/en-us/users/philmollerus-5935/credentials/fca3e28fa05b058" target="_blank" rel="noopener noreferrer">
+            <span class="edu-name">Microsoft Certified: Azure AI Engineer Associate</span>
+          </a>
+          <span class="edu-sub"> · Microsoft</span>
+        </span>
+        <span class="edu-date">Oct 2025</span>
+      </div>
+    </section>
+  </body>
+</html>
